@@ -7,6 +7,7 @@ public class Fui {
         Scanner turbao = new Scanner(System.in);
 
         /** Captura os Dados do Motor */
+        System.out.println();
         System.out.print("Digite o Diametro do Pistao: ");
         float diametroPistao = turbao.nextFloat();
         System.out.print("Digite o Curso do Pistao: ");
