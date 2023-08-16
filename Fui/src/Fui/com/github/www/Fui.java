@@ -28,10 +28,6 @@ public class Fui {
         float volumePistao = raioPistao * raioPistao * cursoPistao * pi / 1000 ;
         int cilindrada = (int) volumePistao * nCilindros;
 
-        /** Calcula a Area do Pistão */
-        float raio = diametroPistao / 10;
-        float areaPistao = raio * raio * pi;
-
         /** Calcula o Volume da Camera Desejado */
         float volCameraDesejado = volumePistao / (txCompressaoDesejada - 1);
 
