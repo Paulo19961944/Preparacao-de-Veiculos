@@ -24,23 +24,31 @@ public class Fui {
         /** Calcula o Raio do Pistão*/
         float raioPistao = diametroPistao / 2;
 
-        /** Faz o Calculo de Cilindrada */
-        float pi = 3.14159F;
+        /** Faz o Calculo de Cilindrada e Area do Pistão */
+        float pi = 3.141592F;
         float volumePistao = raioPistao * raioPistao * cursoPistao * pi / 1000 ;
-        int cilindrada = (int) volumePistao * nCilindros;
+        float cilindrada =  volumePistao * nCilindros;
+        float areaPistao = raioPistao * raioPistao * pi;
+
+        /** Calcula a Area da Junta */
+        float areaJunta = areaPistao * mmJuntaCabeçote / 1000;
 
         /** Calcula o Volume da Camera Desejado */
         float volCameraDesejado = volumePistao / (txCompressaoDesejada - 1);
+        float volCameraDesejadoCorr = volCameraDesejado - areaJunta;
 
         /** Calcula o Volume da Camera Atual */
         float volCameraAtual = volumePistao / (txCompressaoAtual - 1);
+        float volCameraAtualCorr = volCameraAtual - areaJunta;
 
         /** Calcula o Valor da Camera em cm */
-        double cameraAtual = Math.cbrt(volCameraAtual);
-        double cameraDesejada = Math.cbrt(volCameraDesejado);
+        double cameraAtual = Math.cbrt(volCameraAtualCorr);
+        double cameraDesejada = Math.cbrt(volCameraDesejadoCorr);
+        System.out.println(volCameraAtualCorr);
+        System.out.println(volCameraDesejadoCorr);
 
         /** Calcula o quanto tem que rebaixar */
-         float cabecote = (float) ((cameraAtual - cameraDesejada) * 10 - mmJuntaCabeçote) ;
+         float cabecote = (float) ((cameraAtual - cameraDesejada) * 10);
 
         /** Printa na Tela os Resultados **/
         System.out.println();
